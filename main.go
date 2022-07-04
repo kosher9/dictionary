@@ -1,7 +1,7 @@
 package main
 
 import (
-	"dictionary/dict"
+	"dictionary/dictionary"
 	"flag"
 	"fmt"
 	"os"
@@ -11,7 +11,7 @@ func main() {
 
 	action := flag.String("action", "list", "Action to perform")
 
-	d, err := dict.New("./badger")
+	d, err := dictionary.New("./badger")
 	handleError(err)
 	defer d.Close()
 
@@ -30,15 +30,15 @@ func main() {
 	}
 }
 
-func actionAdd(d *dict.Dictionary, args []string) {
+func actionAdd(d *dictionary.Dictionary, args []string) {
 	word := args[0]
 	definition := args[1]
 	err := d.Add(word, definition)
 	handleError(err)
-	fmt.Printf("\n'%v' added to the dict\n", word)
+	fmt.Printf("\n'%v' added to the dictionary\n", word)
 }
 
-func actionList(d *dict.Dictionary) {
+func actionList(d *dictionary.Dictionary) {
 	words, entries, err := d.List()
 	handleError(err)
 	fmt.Println("\nDictionary content\n")
@@ -46,14 +46,14 @@ func actionList(d *dict.Dictionary) {
 		fmt.Println(entries[word])
 	}
 }
-func actionDefine(d *dict.Dictionary, args []string) {
+func actionDefine(d *dictionary.Dictionary, args []string) {
 	word := args[0]
 	entry, err := d.Get(word)
 	handleError(err)
 	fmt.Println(entry)
 }
 
-func actionRemove(d *dict.Dictionary, args []string) {
+func actionRemove(d *dictionary.Dictionary, args []string) {
 	word := args[0]
 	err := d.Remove(word)
 	handleError(err)
