@@ -29,10 +29,10 @@ func New(dir string) (*Dictionary, error) {
 	if err != nil {
 		return nil, err
 	}
-	dict := &Dictionary{db: db,}
+	dict := &Dictionary{db: db}
 	return dict, nil
 }
 
-func (d *Dictionary) Close(){
+func (d *Dictionary) Close() {
 	d.db.Close()
 }
