@@ -51,7 +51,7 @@ func (d *Dictionary) List() ([]string, map[string]Entry, error) {
 		opts.PrefetchSize = 10
 		it := txn.NewIterator(opts)
 		defer it.Close()
-		for it.Rewind(); it.Valid(); it.Next(){
+		for it.Rewind(); it.Valid(); it.Next() {
 			item := it.Item()
 			entry, err := getEntry(item)
 			if err != nil {
@@ -64,10 +64,10 @@ func (d *Dictionary) List() ([]string, map[string]Entry, error) {
 	return sortedKeys(entries), entries, err
 }
 
-func (d *Dictionary) Remove(word string) error{
+func (d *Dictionary) Remove(word string) error {
 	err := d.db.Update(func(txn *badger.Txn) error {
 		err := txn.Delete([]byte(word))
-		if err != nil{
+		if err != nil {
 			return err
 		}
 		return err
@@ -75,7 +75,7 @@ func (d *Dictionary) Remove(word string) error{
 	return err
 }
 
-func sortedKeys(entries map[string]Entry) []string{
+func sortedKeys(entries map[string]Entry) []string {
 	keys := make([]string, len(entries))
 	for key := range entries {
 		keys = append(keys, key)
