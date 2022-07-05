@@ -1,8 +1,8 @@
-# dictionary
+# Dictionary
 A CLI dictionary app. Create your own dictionary and save everything you want. Anything but text only :)
 
 Golang version 1.18 
-# How to run this project
+## How to run this project
 ```shell
 git clone https://github.com/kosher9/dictionary.git
 cd dictionary
